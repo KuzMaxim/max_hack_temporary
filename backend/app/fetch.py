@@ -17,8 +17,6 @@ from urllib.parse import urljoin, urlsplit
 from urllib.robotparser import RobotFileParser
 
 import httpx
-
-from app.tls import ca_bundle
 import yaml
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -26,6 +24,7 @@ from sqlalchemy.orm import Session
 from app.catalog import DATA_DIR
 from app.db import SessionLocal, init_db
 from app.models import RawDocument, Source, utcnow
+from app.tls import ca_bundle
 
 log = logging.getLogger("app.fetch")
 USER_AGENT = "AgregatorVozmozhnostey/0.1 (hackathon project; школьный навигатор мероприятий)"

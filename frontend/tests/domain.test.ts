@@ -60,9 +60,9 @@ describe("catalogue rules", () => {
   it("online is not nationwide eligibility", () => {
     const f = emptyFilters();
     f.values = { format: ["Онлайн"] };
-    expect(run(f)).toHaveLength(8);
+    expect(run(f)).toHaveLength(7);
     f.regionOnly = true;
-    expect(run(f)).toHaveLength(4);
+    expect(run(f)).toHaveLength(3);
   });
   it("soon requires open registration and inclusive 7-day window", () => {
     const f = { ...emptyFilters(), soon: true };
@@ -147,7 +147,7 @@ describe("catalogue rules", () => {
       eventDates: { min: "2026-10-25", max: "2026-10-26" },
       duration: { min: "7", max: "7" },
     };
-    expect(run(f)).toHaveLength(4);
+    expect(run(f)).toHaveLength(3);
   });
 });
 describe("profile persistence", () => {

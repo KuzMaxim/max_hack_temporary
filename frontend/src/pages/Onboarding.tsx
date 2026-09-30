@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { EventType, Grade, Profile } from "../types";
 import { CITIES, TYPES } from "../data/catalog";
-import { Choice, Primary } from "../components/ui";
+import { BackArrow, Choice, Primary } from "../components/ui";
 import { toggle } from "../state/filters";
 export function Onboarding({
   profile,
@@ -51,12 +51,12 @@ export function Onboarding({
             onClick={() => go(step - 1)}
             aria-label="Предыдущий шаг"
           >
-            ←
+            <BackArrow className="figma-back-arrow" />
           </button>
         ) : (
           <span />
         )}
-        <span>Агрегатор возможностей</span>
+        <span>Дерзай</span>
         {onCancel ? (
           <button onClick={onCancel} aria-label="Отменить редактирование">
             ✕
@@ -74,23 +74,27 @@ export function Onboarding({
       )}
       <section className="onboard-body">
         {step === 0 && (
-          <div className="welcome-mark" aria-hidden="true">
-            ✦
-          </div>
+          <img
+            className="welcome-mark"
+            src="/assets/figma/onboarding-welcome.svg"
+            alt=""
+            aria-hidden="true"
+          />
         )}
         <h1>{titles[step]}</h1>
         {step === 0 ? (
           <div className="benefits">
             <p>
-              <span>⌕</span>Находите олимпиады, хакатоны и другие возможности в
-              одном месте
+              <span aria-hidden="true"><img src="/assets/figma/onboarding-search.svg" alt="" /></span>
+              Находите олимпиады, хакатоны&nbsp;и&nbsp;другие возможности&nbsp;в&nbsp;одном месте
             </p>
             <p>
-              <span>♡</span>Получайте подборки с учётом вашего города, класса,
-              интересов и целей
+              <span aria-hidden="true"><img src="/assets/figma/onboarding-star.svg" alt="" /></span>
+              Получайте подборки с&nbsp;учётом вашего города, класса, интересов&nbsp;и&nbsp;целей
             </p>
             <p>
-              <span>↗</span>Выбирайте свою цель и открывайте новые возможности
+              <span aria-hidden="true"><img src="/assets/figma/onboarding-bell.svg" alt="" /></span>
+              Следите за&nbsp;дедлайнами в&nbsp;календаре&nbsp;и&nbsp;получайте напоминания
             </p>
           </div>
         ) : step === 1 ? (
@@ -184,6 +188,7 @@ export function Onboarding({
       <footer className="onboard-footer">
         <Primary
           disabled={!valid}
+          ariaLabel={step === 4 && !editing ? "Открыть возможности" : undefined}
           onClick={() => (step === 4 ? onComplete() : go(step + 1))}
         >
           {step === 0
@@ -191,7 +196,7 @@ export function Onboarding({
             : step === 4
               ? editing
                 ? "Сохранить"
-                : "Открыть возможности"
+                : "Далее"
               : "Далее"}
         </Primary>
         <small>Для учеников 8–11 классов</small>

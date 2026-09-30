@@ -42,7 +42,7 @@ export interface CommonEvent {
   direction: string;
   verified?: boolean;
   source?: string;
-  // поля, которые приходят с бэкенда (в демоданных их нет)
+  // Поля живого каталога FastAPI. Демонстрационные карточки могут их не иметь.
   backendId?: number;
   slug?: string;
   sourceName?: string;
@@ -55,6 +55,7 @@ export interface CommonEvent {
   selectionNote?: string | null;
   benefitNote?: string;
   hasDeadline?: boolean;
+  isParticipating?: boolean;
 }
 export interface OlympiadFields {
   status: string;
@@ -73,10 +74,10 @@ export interface SchoolFields {
 }
 export interface HackathonFields {
   stack: string;
-  teamSize?: number;
+  teamSize: number | undefined;
   teamSearch?: boolean;
   experience: string;
-  prizeFund?: number;
+  prizeFund: number | undefined;
   mentors?: boolean;
 }
 export interface CareerFields {
@@ -84,7 +85,7 @@ export interface CareerFields {
   company: string;
   activity: string;
   targeted?: boolean;
-  minAge?: number;
+  minAge: number | undefined;
   transfer?: boolean;
 }
 export type Opportunity = CommonEvent &
